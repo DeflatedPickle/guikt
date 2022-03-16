@@ -7,20 +7,19 @@ import com.deflatedpickle.guikt.backend.javafx.fix.JavaFXFrameFix
 import com.deflatedpickle.guikt.impl.LayoutManager
 import com.deflatedpickle.guikt.widget.Frame
 import javafx.application.Application
+import javafx.stage.Stage
 
 class JavaFXFrame<T : LayoutManager>(
-    layout: T,
-    title: String,
-    width: Int,
-    height: Int,
-    closeOperation: CloseOperation,
-    components: ComponentMap,
-) : Frame<T>(layout, title, width, height, closeOperation, components) {
+    override val layout: T,
+    override val _title: String,
+    override val _size: com.deflatedpickle.guikt.api.Dimension,
+    override val closeOperation: CloseOperation,
+    override val components: ComponentMap,
+) : Frame<T> {
     init {
         JavaFXBackend.layout = layout
-        JavaFXBackend.title = title
-        JavaFXBackend.width = width
-        JavaFXBackend.height = height
+        JavaFXBackend.title = _title
+        JavaFXBackend.size = _size
         JavaFXBackend.closeOperation = closeOperation
         JavaFXBackend.components = components
 

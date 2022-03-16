@@ -4,28 +4,25 @@ import com.deflatedpickle.guikt.ComponentMap
 import com.deflatedpickle.guikt.api.CloseOperation
 import com.deflatedpickle.guikt.impl.LayoutManager
 import com.deflatedpickle.guikt.widget.Frame
-import java.awt.Dimension
+import java.awt.Dimension as AwtDimension
 import javax.swing.JFrame
 
 class SwingFrame<T : LayoutManager>(
-    layout: T,
-    title: String,
-    width: Int,
-    height: Int,
-    closeOperation: CloseOperation,
-    components: ComponentMap,
-) : Frame<T>(layout, title, width, height, closeOperation, components) {
+    override val layout: T,
+    override val _title: String,
+    override val _size: com.deflatedpickle.guikt.api.Dimension,
+    override val closeOperation: CloseOperation,
+    override val components: ComponentMap,
+) : Frame<T>, JFrame() {
     init {
-        JFrame().apply {
-            this.title = title
-            this.size = Dimension(
-                width,
-                height
-            )
-            this.defaultCloseOperation = closeOperation.ordinal
-            // this.layout = layout.toBackend()
+        this.title = _title
+        this.size = AwtDimension(
+            _size.width,
+            _size.height,
+        )
+        this.defaultCloseOperation = closeOperation.ordinal
+        // this.layout = layout.toBackend()
 
-            isVisible = true
-        }
+        isVisible = true
     }
 }

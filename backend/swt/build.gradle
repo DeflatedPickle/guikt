@@ -16,8 +16,6 @@ configurations.all {
 }
 
 dependencies {
-    implementation project(':')
-    implementation project(':swing')
-    implementation project(':javafx')
-    implementation project(':swt')
+    api 'org.eclipse.platform:org.eclipse.jface:3.24.0'
+    api "org.eclipse.platform:org.eclipse.swt:3.114.0"
 }
