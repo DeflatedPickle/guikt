@@ -11,7 +11,12 @@ rootProject.name = 'guikt'
 include 'master'
 include 'demo'
 
-include 'swing'
-include 'javafx'
+[
+        'swing',
+        'javafx',
+].each {
+    include it
+    project(":$it").projectDir = new File("backend/$it")
+}
 
 includeBuild 'libs/marvin'
