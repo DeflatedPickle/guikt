@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'java-library'
+
+    id 'org.jetbrains.kotlin.jvm'
+
+    id 'com.diffplug.spotless'
+}
+
+group "$group"
+archivesBaseName = "$name"
+version "$version"
+sourceCompatibility = "$jvmTarget"
+
+allprojects { p ->
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+
+    apply plugin: 'com.diffplug.spotless'
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencies {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+        implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
+
+        api 'com.deflatedpickle:marvin:'
+    }
+
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = "1.8"
+            languageVersion = "1.5"
+
+            freeCompilerArgs = [
+                    "-Xopt-in=kotlin.RequiresOptIn",
+                    "-Xinline-classes"
+            ]
+        }
+    }
+
+    spotless {
+        ratchetFrom 'origin/main'
+
+        groovyGradle {
+            target '*.gradle'
+            greclipse()
+        }
+
+        kotlin {
+            ktlint("$ktlintVersion")
+
+            licenseHeader "/* $licenseHeader */\n\n"
+        }
+
+        format 'misc', {
+            target '*.md', '.gitignore'
+
+            trimTrailingWhitespace()
+            indentWithTabs()
+            endWithNewline()
+        }
+    }
+}
+
+subprojects {
+    dependencies {
+        implementation project(':')
+    }
+}

@@ -1,0 +1,17 @@
+pluginManagement {
+    plugins {
+        id 'org.jetbrains.kotlin.jvm' version "$kotlinVersion"
+
+        id 'com.diffplug.spotless' version "$spotlessVersion"
+    }
+}
+
+rootProject.name = 'guikt'
+
+include 'master'
+include 'demo'
+
+include 'swing'
+include 'javafx'
+
+includeBuild 'libs/marvin'

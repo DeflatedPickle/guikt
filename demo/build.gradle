@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':')
+    implementation project(':swing')
+    implementation project(':javafx')
+}

@@ -1,0 +1,3 @@
+[submodule "libs/marvin"]
+	path = libs/marvin
+	url = https://github.com/DeflatedPickle/marvin
