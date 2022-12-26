@@ -15,9 +15,19 @@ configurations.all {
     }
 }
 
+repositories {
+    mavenCentral()
+
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://raw.github.com/SpinyOwl/repo/releases" }
+}
+
 dependencies {
+    implementation "com.spinyowl:legui:4.1.0"
+
     implementation project(':')
     implementation project(':swing')
     implementation project(':javafx')
     implementation project(':swt')
+    implementation project(':legui')
 }

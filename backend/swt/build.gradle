@@ -16,6 +16,7 @@ configurations.all {
 }
 
 dependencies {
-    api 'org.eclipse.platform:org.eclipse.jface:3.24.0'
+    api 'org.eclipse.platform:org.eclipse.jface:3.25.0'
     api "org.eclipse.platform:org.eclipse.swt:3.114.0"
 }
+

@@ -15,9 +15,10 @@ include 'demo'
         'swing',
         'javafx',
         'swt',
+        'legui',
 ].each {
     include it
     project(":$it").projectDir = new File("backend/$it")
 }
 
-includeBuild 'libs/marvin'
+// includeBuild 'libs/marvin'
