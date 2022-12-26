@@ -7,6 +7,6 @@ package com.deflatedpickle.guikt.impl
 import com.deflatedpickle.guikt.ComponentMap
 import com.deflatedpickle.guikt.api.Builder
 
-abstract class ContainerBuilder<T, C : Constraint> : Builder<C> {
+abstract class ContainerBuilder<T> : Builder<T> {
     internal val components = ComponentMap()
 }

@@ -4,6 +4,6 @@ package com.deflatedpickle.guikt.api
 
 import com.deflatedpickle.guikt.impl.Constraint
 
-interface Builder<C : Constraint> {
-    fun build(): Component<C>
+interface Builder<C> {
+    fun build(): C
 }

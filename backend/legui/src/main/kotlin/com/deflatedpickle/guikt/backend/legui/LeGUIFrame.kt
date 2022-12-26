@@ -2,7 +2,7 @@ package com.deflatedpickle.guikt.backend.legui
 
 import com.deflatedpickle.guikt.ComponentMap
 import com.deflatedpickle.guikt.api.CloseOperation
-import com.deflatedpickle.guikt.impl.LayoutManager
+import com.deflatedpickle.guikt.impl.Layout
 import com.deflatedpickle.guikt.widget.Frame
 import com.spinyowl.legui.animation.AnimatorProvider
 import com.spinyowl.legui.listener.processor.EventProcessorProvider
@@ -31,7 +31,7 @@ import org.lwjgl.system.MemoryUtil.NULL
 import com.spinyowl.legui.component.Frame as LeFrame
 import com.spinyowl.legui.system.layout.LayoutManager as LeLayoutManager
 
-class LeGUIFrame<T : LayoutManager>(
+class LeGUIFrame<T : Layout>(
     override val layout: T,
     override val _title: String,
     override val _size: com.deflatedpickle.guikt.api.Dimension,

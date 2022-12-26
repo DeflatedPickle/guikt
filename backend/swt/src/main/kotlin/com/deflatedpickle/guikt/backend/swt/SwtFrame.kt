@@ -3,13 +3,13 @@ package com.deflatedpickle.guikt.backend.swt
 import com.deflatedpickle.guikt.ComponentMap
 import com.deflatedpickle.guikt.api.CloseOperation
 import com.deflatedpickle.guikt.api.Dimension
-import com.deflatedpickle.guikt.impl.LayoutManager
+import com.deflatedpickle.guikt.impl.Layout
 import com.deflatedpickle.guikt.widget.Frame
 import org.eclipse.swt.graphics.Point
 import org.eclipse.swt.widgets.Display
 import org.eclipse.swt.widgets.Shell
 
-class SwtFrame<T : LayoutManager>(
+class SwtFrame<T : Layout>(
     override val layout: T,
     override val _title: String,
     override val _size: Dimension,

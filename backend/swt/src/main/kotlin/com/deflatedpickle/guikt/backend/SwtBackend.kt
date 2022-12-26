@@ -7,7 +7,7 @@ import com.deflatedpickle.guikt.backend.swt.SwtFrame
 import com.deflatedpickle.guikt.widget.Frame
 import java.awt.Container
 
-object SwtBackend : Backend<Container>() {
+object SwtBackend : Backend() {
     init {
         registry[Frame::class] = SwtFrame::class
     }

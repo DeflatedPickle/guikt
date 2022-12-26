@@ -13,14 +13,14 @@ import com.deflatedpickle.guikt.api.GuiDSL
 import com.deflatedpickle.guikt.api.x
 import com.deflatedpickle.guikt.impl.Constraint
 import com.deflatedpickle.guikt.impl.ContainerBuilder
-import com.deflatedpickle.guikt.impl.LayoutManager
+import com.deflatedpickle.guikt.impl.Layout
 
-fun <T : LayoutManager> frame(
+fun <T : Layout> frame(
     layout: T,
     block: FrameBuilder<T>.() -> Unit = {}
 ) = FrameBuilder(layout).apply(block).build()
 
-interface Frame<T : LayoutManager> : Container<T, Constraint> {
+interface Frame<T : Layout> : Container<T, Constraint> {
     val layout: T
     val _title: String
     val _size: Dimension
@@ -29,9 +29,9 @@ interface Frame<T : LayoutManager> : Container<T, Constraint> {
 }
 
 @GuiDSL
-class FrameBuilder<T : LayoutManager>(
+class FrameBuilder<T : Layout>(
     var layout: T
-) : ContainerBuilder<Frame<*>, Constraint>() {
+) : ContainerBuilder<Frame<T>>() {
     var title: String = ""
     var size: Dimension = 420 x 360
     var closeOperation: CloseOperation = CloseOperation.EXIT

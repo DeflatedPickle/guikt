@@ -2,4 +2,6 @@
 
 package com.deflatedpickle.guikt.api
 
-interface BackendObject
+interface BackendObject {
+    fun make(): Any? { return null }
+}

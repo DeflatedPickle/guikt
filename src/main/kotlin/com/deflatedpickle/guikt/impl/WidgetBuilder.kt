@@ -6,4 +6,4 @@ package com.deflatedpickle.guikt.impl
 
 import com.deflatedpickle.guikt.api.Builder
 
-abstract class WidgetBuilder<T, C : Constraint> : Builder<C>
+abstract class WidgetBuilder<T> : Builder<T>

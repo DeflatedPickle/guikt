@@ -8,15 +8,15 @@ import com.deflatedpickle.guikt.api.Alignment
 import com.deflatedpickle.guikt.api.BackendObject
 import kotlin.reflect.KClass
 
-sealed class LayoutManager : BackendObject {
-    object None : LayoutManager() {
+sealed class Layout : BackendObject {
+    object None : Layout() {
         override fun toConstraint(): KClass<out Constraint> = Constraint.None::class
     }
 
     data class Border(
         val hGap: Int = 0,
         val vGap: Int = 0
-    ) : LayoutManager() {
+    ) : Layout() {
         override fun toConstraint(): KClass<out Constraint> = Constraint.Border::class
     }
 
@@ -25,7 +25,7 @@ sealed class LayoutManager : BackendObject {
         val alignOnBaseline: Boolean = false,
         val hGap: Int = 5,
         val vGap: Int = 5
-    ) : LayoutManager() {
+    ) : Layout() {
         override fun toConstraint(): KClass<out Constraint> = Constraint.Flow::class
     }
 
