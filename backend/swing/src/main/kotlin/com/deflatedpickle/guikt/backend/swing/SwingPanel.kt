@@ -8,6 +8,7 @@ import com.deflatedpickle.guikt.impl.Layout
 import com.deflatedpickle.guikt.widget.Frame
 import com.deflatedpickle.guikt.widget.Panel
 import java.awt.Component
+import java.awt.LayoutManager
 import java.awt.Dimension as AwtDimension
 import javax.swing.JFrame
 import javax.swing.JPanel
@@ -18,8 +19,10 @@ class SwingPanel<C : Constraint, T : Layout>(
     override val components: ComponentMap
 ) : Panel<C, T>, JPanel() {
     init {
+        this.setLayout(this.layout.build() as LayoutManager)
+
         for ((w, c) in components) {
-            this.add(w as Component)
+            this.add(w as Component, /*c.build()*/)
         }
     }
 }

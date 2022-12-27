@@ -1,4 +1,6 @@
 import com.deflatedpickle.guikt.GuiKT
+import com.deflatedpickle.guikt.api.Compass.EAST
+import com.deflatedpickle.guikt.api.Compass.ROSE
 import com.deflatedpickle.guikt.api.x
 import com.deflatedpickle.guikt.backend.SwingBackend
 import com.deflatedpickle.guikt.impl.Constraint
