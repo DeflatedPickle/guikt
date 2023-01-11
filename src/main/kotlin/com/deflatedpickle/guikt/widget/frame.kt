@@ -22,9 +22,11 @@ fun <T : Layout> frame(
 
 interface Frame<T : Layout> : Container<T, Constraint> {
     val layout: T
+
     val _title: String
     val _size: Dimension
     val closeOperation: CloseOperation
+
     val components: ComponentMap
 }
 

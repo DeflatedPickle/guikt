@@ -13,12 +13,12 @@ import com.deflatedpickle.guikt.impl.ContainerBuilder
 import com.deflatedpickle.guikt.impl.Icon
 import com.deflatedpickle.guikt.impl.WidgetBuilder
 
-fun <C : Constraint> ContainerBuilder<*>.button(
+fun <C : Constraint> ContainerBuilder<*>.radiobutton(
     constraint: C,
-    block: ButtonBuilder<C>.() -> Unit = {}
-) = ButtonBuilder(constraint).apply(block).build().apply { components[this] = constraint }
+    block: RadioButtonBuilder<C>.() -> Unit = {}
+) = RadioButtonBuilder(constraint).apply(block).build().apply { components[this] = constraint }
 
-interface Button<C : Constraint> : Component<C> {
+interface RadioButton<C : Constraint> : Component<C> {
     val constraint: C
 
     val enabled: Boolean
@@ -31,9 +31,9 @@ interface Button<C : Constraint> : Component<C> {
 }
 
 @GuiDSL
-class ButtonBuilder<C : Constraint>(
+class RadioButtonBuilder<C : Constraint>(
     var constraint: C
-) : WidgetBuilder<Button<C>>() {
+) : WidgetBuilder<RadioButton<C>>() {
     var enabled = true
 
     var text: String? = null
@@ -42,7 +42,7 @@ class ButtonBuilder<C : Constraint>(
 
     var onClick: MutableList<Listener> = mutableListOf()
 
-    override fun build() = GuiKT.backend.registry[Button::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
+    override fun build() = GuiKT.backend.registry[RadioButton::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
         constraint, enabled, text, icon, mnemonic, onClick,
-    ) as Button<C>
+    ) as RadioButton<C>
 }

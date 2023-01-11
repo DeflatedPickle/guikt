@@ -1,4 +1,4 @@
-package com.deflatedpickle.guikt.backend.swing
+package com.deflatedpickle.guikt.backend.swing.widget
 
 import com.deflatedpickle.guikt.ComponentMap
 import com.deflatedpickle.guikt.api.CloseOperation

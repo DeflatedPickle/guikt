@@ -18,6 +18,7 @@ fun <C : Constraint> ContainerBuilder<*>.label(
 
 interface Label<C : Constraint> : Component<C> {
     val constraint: C
+
     val _text: String
 }
 

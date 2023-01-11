@@ -1,9 +1,7 @@
-package com.deflatedpickle.guikt.backend.swing
+package com.deflatedpickle.guikt.backend.swing.widget
 
 import com.deflatedpickle.guikt.impl.Constraint
-import com.deflatedpickle.guikt.widget.Button
 import com.deflatedpickle.guikt.widget.Label
-import javax.swing.JButton
 import javax.swing.JLabel
 
 class SwingLabel<C : Constraint>(

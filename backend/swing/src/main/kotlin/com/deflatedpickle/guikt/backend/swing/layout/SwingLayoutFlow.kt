@@ -1,4 +1,4 @@
-package com.deflatedpickle.guikt.backend.swing
+package com.deflatedpickle.guikt.backend.swing.layout
 
 import com.deflatedpickle.guikt.api.Alignment
 import com.deflatedpickle.guikt.api.BackendObject
