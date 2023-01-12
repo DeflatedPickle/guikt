@@ -28,10 +28,12 @@ interface TextField<C : Constraint> : Component<C> {
 class TextFieldBuilder<C : Constraint>(
     var constraint: C
 ) : WidgetBuilder<TextField<C>>() {
+    var enabled = true
+
     var text: String = ""
     var columns: Int = 0
 
     override fun build() = GuiKT.backend.registry[TextField::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, text, columns,
+        constraint, enabled, text, columns,
     ) as TextField<C>
 }

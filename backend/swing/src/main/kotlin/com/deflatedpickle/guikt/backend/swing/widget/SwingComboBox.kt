@@ -3,14 +3,17 @@ package com.deflatedpickle.guikt.backend.swing.widget
 import com.deflatedpickle.guikt.api.Event
 import com.deflatedpickle.guikt.api.Listener
 import com.deflatedpickle.guikt.impl.Constraint
+import com.deflatedpickle.guikt.impl.Model
 import com.deflatedpickle.guikt.widget.ComboBox
+import javax.swing.ComboBoxModel
+import javax.swing.DefaultComboBoxModel
 import javax.swing.JComboBox
 
 class SwingComboBox<T : Any>(
     override val constraint: Constraint,
     override val enabled: Boolean,
     override val editable: Boolean,
-    override val items: MutableList<T>,
+    override val model: Model.ComboBox.Default<T>,
     override val index: Int,
     override val onItem: MutableList<Listener>,
     override val onClick: MutableList<Listener>,
@@ -20,9 +23,7 @@ class SwingComboBox<T : Any>(
 
         setEditable(editable)
 
-        for (i in items) {
-            addItem(i)
-        }
+        setModel(model.build() as DefaultComboBoxModel<T>)
 
         selectedIndex = index
 

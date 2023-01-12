@@ -4,4 +4,6 @@ package com.deflatedpickle.guikt.api
 
 import com.deflatedpickle.guikt.impl.Constraint
 
-interface Component<out C : Constraint> : BackendObject
+interface Component<out C : Constraint> : BackendObject {
+    val enabled: Boolean
+}

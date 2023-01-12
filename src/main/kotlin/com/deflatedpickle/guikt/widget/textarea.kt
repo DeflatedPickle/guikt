@@ -30,12 +30,14 @@ interface TextArea<C : Constraint> : Component<C> {
 class TextAreaBuilder<C : Constraint>(
     var constraint: C
 ) : WidgetBuilder<TextArea<C>>() {
+    var enabled = true
+
     var text = ""
     var rows = 0
     var columns = 0
     var wrap = false
 
     override fun build() = GuiKT.backend.registry[TextArea::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, text, rows, columns, wrap,
+        constraint, enabled, text, rows, columns, wrap,
     ) as TextArea<C>
 }

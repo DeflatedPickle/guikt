@@ -29,6 +29,6 @@ class LabelBuilder<C : Constraint>(
     var text: String = ""
 
     override fun build() = GuiKT.backend.registry[Label::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, text,
+        constraint, true, text,
     ) as Label<C>
 }

@@ -9,12 +9,15 @@ import javax.swing.JProgressBar
 
 class SwingProgressBar<C : Constraint>(
     override val constraint: C,
+    override val enabled: Boolean,
     override val _orientation: Orientation,
     override val min: Int,
     override val max: Int,
     override val _value: Int,
 ) : ProgressBar<C>, JProgressBar() {
     init {
+        isEnabled = enabled
+
         orientation = _orientation.ordinal
         minimum = min
         maximum = max

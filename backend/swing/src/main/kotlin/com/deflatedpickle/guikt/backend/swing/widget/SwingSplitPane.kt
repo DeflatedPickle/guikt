@@ -15,6 +15,7 @@ import javax.swing.JSplitPane
 
 class SwingSplitPane<C : Constraint>(
     override val constraint: C,
+    override val enabled: Boolean,
     override val left: Component<Constraint>,
     override val right: Component<Constraint>,
     override val orientation: Orientation,
@@ -27,6 +28,8 @@ class SwingSplitPane<C : Constraint>(
     right as JComponent,
 ) {
     init {
+        isEnabled = enabled
+
         isOneTouchExpandable = touchExpand
     }
 }

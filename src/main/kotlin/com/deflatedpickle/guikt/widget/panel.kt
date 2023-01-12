@@ -27,6 +27,6 @@ class PanelBuilder<C : Constraint, T : Layout>(
     var layout: T,
 ) : ContainerBuilder<Panel<C, T>>() {
     override fun build() = GuiKT.backend.registry[Panel::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, layout, components,
+        constraint, layout, true, components,
     ) as Panel<C, T>
 }

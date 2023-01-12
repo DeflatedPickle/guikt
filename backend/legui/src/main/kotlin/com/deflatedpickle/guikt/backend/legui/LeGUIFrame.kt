@@ -33,6 +33,7 @@ import com.spinyowl.legui.system.layout.LayoutManager as LeLayoutManager
 
 class LeGUIFrame<T : Layout>(
     override val layout: T,
+    override val enabled: Boolean,
     override val _title: String,
     override val _size: com.deflatedpickle.guikt.api.Dimension,
     override val closeOperation: CloseOperation,

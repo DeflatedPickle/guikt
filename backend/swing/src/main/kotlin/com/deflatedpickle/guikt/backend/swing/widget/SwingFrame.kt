@@ -12,12 +12,15 @@ import javax.swing.JFrame
 
 class SwingFrame<T : Layout>(
     override val layout: T,
+    override val enabled: Boolean,
     override val _title: String,
     override val _size: Dimension,
     override val closeOperation: CloseOperation,
     override val components: ComponentMap,
 ) : Frame<T>, JFrame() {
     init {
+        isEnabled = enabled
+
         this.title = _title
         this.size = AwtDimension(
             _size.width,

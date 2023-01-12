@@ -5,7 +5,7 @@ import com.deflatedpickle.guikt.api.x
 import com.deflatedpickle.guikt.backend.SwingBackend
 import com.deflatedpickle.guikt.impl.Constraint
 import com.deflatedpickle.guikt.impl.Layout
-import com.deflatedpickle.guikt.widget.ComboBox
+import com.deflatedpickle.guikt.impl.Model
 import com.deflatedpickle.guikt.widget.button
 import com.deflatedpickle.guikt.widget.checkbox
 import com.deflatedpickle.guikt.widget.combobox
@@ -16,6 +16,7 @@ import com.deflatedpickle.guikt.widget.panel
 import com.deflatedpickle.guikt.widget.progressbar
 import com.deflatedpickle.guikt.widget.radiobutton
 import com.deflatedpickle.guikt.widget.slider
+import com.deflatedpickle.guikt.widget.spinner
 import com.deflatedpickle.guikt.widget.splitpane
 import com.deflatedpickle.guikt.widget.textarea
 import com.deflatedpickle.guikt.widget.textfield
@@ -57,14 +58,18 @@ fun main() {
                 }
 
                 combobox<String>(Constraint.Flow()) {
-                    items += listOf("Swing", "Swt", "JavaFX", "LeGUI")
+                    model = Model.ComboBox.Default(
+                        listOf("Swing", "Swt", "JavaFX", "LeGUI")
+                    )
                     onItem += Listener {
                         println(it.source)
                     }
                 }
 
                 list<String>(Constraint.Flow()) {
-                    items += listOf("Swing", "Swt", "JavaFX", "LeGUI")
+                    model = Model.List.Default(
+                        listOf("Swing", "Swt", "JavaFX", "LeGUI")
+                    )
                     onSelection += Listener {
                         println(it.source)
                     }
@@ -75,9 +80,21 @@ fun main() {
                 }
 
                 slider(Constraint.Flow()) {
-                    min = 25
-                    max = 50
-                    value = 35
+                    model = Model.BoundedRange.Integer(
+                        50,
+                        0,
+                        0,
+                        100,
+                    )
+                }
+
+                spinner<Double>(Constraint.Flow()) {
+                    model = Model.Spinner.Number(
+                        50.0,
+                        0.0,
+                        100.0,
+                        0.1,
+                    )
                 }
             }
 

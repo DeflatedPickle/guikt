@@ -7,16 +7,22 @@ import com.deflatedpickle.guikt.backend.swing.widget.SwingFrame
 import com.deflatedpickle.guikt.backend.swing.widget.SwingLabel
 import com.deflatedpickle.guikt.backend.swing.layout.SwingLayoutBorder
 import com.deflatedpickle.guikt.backend.swing.layout.SwingLayoutFlow
+import com.deflatedpickle.guikt.backend.swing.model.SwingModelDefaultComboBox
+import com.deflatedpickle.guikt.backend.swing.model.SwingModelDefaultList
+import com.deflatedpickle.guikt.backend.swing.model.SwingModelIntegerBoundRange
+import com.deflatedpickle.guikt.backend.swing.model.SwingModelNumberSpinner
 import com.deflatedpickle.guikt.backend.swing.widget.SwingComboBox
 import com.deflatedpickle.guikt.backend.swing.widget.SwingList
 import com.deflatedpickle.guikt.backend.swing.widget.SwingPanel
 import com.deflatedpickle.guikt.backend.swing.widget.SwingProgressBar
 import com.deflatedpickle.guikt.backend.swing.widget.SwingRadioButton
 import com.deflatedpickle.guikt.backend.swing.widget.SwingSlider
+import com.deflatedpickle.guikt.backend.swing.widget.SwingSpinner
 import com.deflatedpickle.guikt.backend.swing.widget.SwingSplitPane
 import com.deflatedpickle.guikt.backend.swing.widget.SwingTextArea
 import com.deflatedpickle.guikt.backend.swing.widget.SwingTextField
 import com.deflatedpickle.guikt.backend.swing.widget.SwingToggleButton
+import com.deflatedpickle.guikt.impl.Model
 import com.deflatedpickle.guikt.widget.Button
 import com.deflatedpickle.guikt.widget.CheckBox
 import com.deflatedpickle.guikt.widget.ComboBox
@@ -27,12 +33,17 @@ import com.deflatedpickle.guikt.widget.Panel
 import com.deflatedpickle.guikt.widget.ProgressBar
 import com.deflatedpickle.guikt.widget.RadioButton
 import com.deflatedpickle.guikt.widget.Slider
+import com.deflatedpickle.guikt.widget.Spinner
 import com.deflatedpickle.guikt.widget.SplitPane
 import com.deflatedpickle.guikt.widget.TextArea
 import com.deflatedpickle.guikt.widget.TextField
 import com.deflatedpickle.guikt.widget.ToggleButton
 import com.deflatedpickle.guikt.impl.Layout.Border as LayoutBorder
 import com.deflatedpickle.guikt.impl.Layout.Flow as LayoutFlow
+import com.deflatedpickle.guikt.impl.Model.BoundedRange.Integer as ModelIntegerBoundedRange
+import com.deflatedpickle.guikt.impl.Model.Spinner.Number as ModelNumberSpinner
+import com.deflatedpickle.guikt.impl.Model.List.Default as ModelDefaultList
+import com.deflatedpickle.guikt.impl.Model.ComboBox.Default as ModelDefaultComboBox
 
 object SwingBackend : Backend() {
     init {
@@ -54,8 +65,14 @@ object SwingBackend : Backend() {
         registry[ComboBox::class] = SwingComboBox::class
         registry[List::class] = SwingList::class
         registry[ProgressBar::class] = SwingProgressBar::class
+        registry[Spinner::class] = SwingSpinner::class
 
         registry[LayoutBorder::class] = SwingLayoutBorder::class
         registry[LayoutFlow::class] = SwingLayoutFlow::class
+
+        registry[ModelIntegerBoundedRange::class] = SwingModelIntegerBoundRange::class
+        registry[ModelNumberSpinner::class] = SwingModelNumberSpinner::class
+        registry[ModelDefaultList::class] = SwingModelDefaultList::class
+        registry[ModelDefaultComboBox::class] = SwingModelDefaultComboBox::class
     }
 }

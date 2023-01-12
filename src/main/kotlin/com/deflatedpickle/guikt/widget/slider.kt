@@ -10,6 +10,7 @@ import com.deflatedpickle.guikt.api.GuiDSL
 import com.deflatedpickle.guikt.api.Orientation
 import com.deflatedpickle.guikt.impl.Constraint
 import com.deflatedpickle.guikt.impl.ContainerBuilder
+import com.deflatedpickle.guikt.impl.Model
 import com.deflatedpickle.guikt.impl.WidgetBuilder
 
 fun <C : Constraint> ContainerBuilder<*>.slider(
@@ -21,21 +22,23 @@ interface Slider<C : Constraint> : Component<C> {
     val constraint: C
 
     val _orientation: Orientation
-    val min: Int
-    val max: Int
-    val _value: Int
+    val model: Model.BoundedRange.Integer
 }
 
 @GuiDSL
 class SliderBuilder<C : Constraint>(
     var constraint: C
 ) : WidgetBuilder<Slider<C>>() {
+    var enabled = true
     var orientation = Orientation.HORIZONTAL
-    var min = 0
-    var max = 100
-    var value = 50
+    var model = Model.BoundedRange.Integer(
+        value = 0,
+        extent = 0,
+        min = 0,
+        max = 100,
+    )
 
     override fun build() = GuiKT.backend.registry[Slider::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, orientation, min, max, value,
+        constraint, enabled, orientation, model,
     ) as Slider<C>
 }

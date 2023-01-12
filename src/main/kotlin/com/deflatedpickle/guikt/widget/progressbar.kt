@@ -30,12 +30,14 @@ interface ProgressBar<C : Constraint> : Component<C> {
 class ProgressBarBuilder<C : Constraint>(
     var constraint: C
 ) : WidgetBuilder<ProgressBar<C>>() {
+    var enabled = true
+
     var orientation = Orientation.HORIZONTAL
     var min = 0
     var max = 100
     var value = 0
 
     override fun build() = GuiKT.backend.registry[ProgressBar::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, orientation, min, max, value,
+        constraint, enabled, orientation, min, max, value,
     ) as ProgressBar<C>
 }

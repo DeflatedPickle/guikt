@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Shell
 
 class SwtFrame<T : Layout>(
     override val layout: T,
+    override val enabled: Boolean,
     override val _title: String,
     override val _size: Dimension,
     override val closeOperation: CloseOperation,

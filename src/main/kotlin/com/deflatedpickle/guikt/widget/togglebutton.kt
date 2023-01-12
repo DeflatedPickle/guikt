@@ -21,8 +21,6 @@ fun <C : Constraint> ContainerBuilder<*>.togglebutton(
 interface ToggleButton<C : Constraint> : Component<C> {
     val constraint: C
 
-    val enabled: Boolean
-
     val _text: String?
     val _icon: Icon?
     val _mnemonic: Char?

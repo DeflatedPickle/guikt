@@ -10,7 +10,7 @@ import com.deflatedpickle.guikt.api.GuiDSL
 import com.deflatedpickle.guikt.api.Listener
 import com.deflatedpickle.guikt.impl.Constraint
 import com.deflatedpickle.guikt.impl.ContainerBuilder
-import com.deflatedpickle.guikt.impl.Icon
+import com.deflatedpickle.guikt.impl.Model
 import com.deflatedpickle.guikt.impl.WidgetBuilder
 
 fun <T : Any> ContainerBuilder<*>.list(
@@ -21,9 +21,7 @@ fun <T : Any> ContainerBuilder<*>.list(
 interface List<T : Any> : Component<Constraint> {
     val constraint: Constraint
 
-    val enabled: Boolean
-
-    val items: MutableList<T>
+    val model: Model.List.Default<T>
     val index: Int
 
     val onSelection: MutableList<Listener>
@@ -35,12 +33,12 @@ class ListBuilder<T : Any>(
 ) : WidgetBuilder<List<T>>() {
     var enabled = true
 
-    var items: MutableList<T> = mutableListOf()
+    var model = Model.List.Default<T>()
     var index = 0
 
     var onSelection: MutableList<Listener> = mutableListOf()
 
     override fun build() = GuiKT.backend.registry[List::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, enabled, items, index, onSelection,
+        constraint, enabled, model, index, onSelection,
     ) as List<T>
 }

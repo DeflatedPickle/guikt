@@ -11,9 +11,12 @@ import javax.swing.JPanel
 class SwingPanel<C : Constraint, T : Layout>(
     override val constraint: C,
     override val layout: T,
+    override val enabled: Boolean,
     override val components: ComponentMap
 ) : Panel<C, T>, JPanel() {
     init {
+        isEnabled = enabled
+
         this.setLayout(this.layout.build() as LayoutManager)
 
         for ((w, c) in components) {

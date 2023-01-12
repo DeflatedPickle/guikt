@@ -39,6 +39,6 @@ class FrameBuilder<T : Layout>(
     var closeOperation: CloseOperation = CloseOperation.EXIT
 
     override fun build() = GuiKT.backend.registry[Frame::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        layout, title, size, closeOperation, components,
+        layout, true, title, size, closeOperation, components,
     ) as Frame<T>
 }

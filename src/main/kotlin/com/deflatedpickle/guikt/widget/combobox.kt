@@ -10,7 +10,7 @@ import com.deflatedpickle.guikt.api.GuiDSL
 import com.deflatedpickle.guikt.api.Listener
 import com.deflatedpickle.guikt.impl.Constraint
 import com.deflatedpickle.guikt.impl.ContainerBuilder
-import com.deflatedpickle.guikt.impl.Icon
+import com.deflatedpickle.guikt.impl.Model
 import com.deflatedpickle.guikt.impl.WidgetBuilder
 
 fun <T : Any> ContainerBuilder<*>.combobox(
@@ -21,10 +21,8 @@ fun <T : Any> ContainerBuilder<*>.combobox(
 interface ComboBox<T : Any> : Component<Constraint> {
     val constraint: Constraint
 
-    val enabled: Boolean
-
     val editable: Boolean
-    val items: MutableList<T>
+    val model: Model.ComboBox.Default<T>
     val index: Int
 
     val onItem: MutableList<Listener>
@@ -38,13 +36,13 @@ class ComboBoxBuilder<T : Any>(
     var enabled = true
 
     var editable = false
-    var items: MutableList<T> = mutableListOf()
+    var model = Model.ComboBox.Default<T>()
     var index = 0
 
     var onItem: MutableList<Listener> = mutableListOf()
     var onClick: MutableList<Listener> = mutableListOf()
 
     override fun build() = GuiKT.backend.registry[ComboBox::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, enabled, editable, items, index, onItem, onClick,
+        constraint, enabled, editable, model, index, onItem, onClick,
     ) as ComboBox<T>
 }

@@ -37,6 +37,6 @@ class SplitPaneBuilder<C : Constraint>(
     var touchExpand = false
 
     override fun build() = GuiKT.backend.registry[SplitPane::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
-        constraint, left, right, orientation, continuous, touchExpand,
+        constraint, true, left, right, orientation, continuous, touchExpand,
     ) as SplitPane<C>
 }
