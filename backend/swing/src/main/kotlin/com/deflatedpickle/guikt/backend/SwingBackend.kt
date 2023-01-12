@@ -7,9 +7,11 @@ import com.deflatedpickle.guikt.backend.swing.widget.SwingFrame
 import com.deflatedpickle.guikt.backend.swing.widget.SwingLabel
 import com.deflatedpickle.guikt.backend.swing.layout.SwingLayoutBorder
 import com.deflatedpickle.guikt.backend.swing.layout.SwingLayoutFlow
+import com.deflatedpickle.guikt.backend.swing.model.SwingModelDateSpinner
 import com.deflatedpickle.guikt.backend.swing.model.SwingModelDefaultComboBox
 import com.deflatedpickle.guikt.backend.swing.model.SwingModelDefaultList
 import com.deflatedpickle.guikt.backend.swing.model.SwingModelIntegerBoundRange
+import com.deflatedpickle.guikt.backend.swing.model.SwingModelListSpinner
 import com.deflatedpickle.guikt.backend.swing.model.SwingModelNumberSpinner
 import com.deflatedpickle.guikt.backend.swing.widget.SwingComboBox
 import com.deflatedpickle.guikt.backend.swing.widget.SwingList
@@ -41,6 +43,8 @@ import com.deflatedpickle.guikt.widget.ToggleButton
 import com.deflatedpickle.guikt.impl.Layout.Border as LayoutBorder
 import com.deflatedpickle.guikt.impl.Layout.Flow as LayoutFlow
 import com.deflatedpickle.guikt.impl.Model.BoundedRange.Integer as ModelIntegerBoundedRange
+import com.deflatedpickle.guikt.impl.Model.Spinner.Date as ModelDateSpinner
+import com.deflatedpickle.guikt.impl.Model.Spinner.List as ModelListSpinner
 import com.deflatedpickle.guikt.impl.Model.Spinner.Number as ModelNumberSpinner
 import com.deflatedpickle.guikt.impl.Model.List.Default as ModelDefaultList
 import com.deflatedpickle.guikt.impl.Model.ComboBox.Default as ModelDefaultComboBox
@@ -71,6 +75,8 @@ object SwingBackend : Backend() {
         registry[LayoutFlow::class] = SwingLayoutFlow::class
 
         registry[ModelIntegerBoundedRange::class] = SwingModelIntegerBoundRange::class
+        registry[ModelDateSpinner::class] = SwingModelDateSpinner::class
+        registry[ModelListSpinner::class] = SwingModelListSpinner::class
         registry[ModelNumberSpinner::class] = SwingModelNumberSpinner::class
         registry[ModelDefaultList::class] = SwingModelDefaultList::class
         registry[ModelDefaultComboBox::class] = SwingModelDefaultComboBox::class
