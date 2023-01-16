@@ -14,7 +14,7 @@ import kotlin.collections.List as KList
 
 sealed interface Model<out T> : BackendObject, Builder<Any> {
     sealed interface Spinner<out T> : Model<T> {
-        class Date<T : JDate>(
+        data class Date<T : JDate>(
             val value: T = java.util.Date() as T,
             val start: Comparable<JDate> = java.util.Date(),
             val end: Comparable<JDate> = java.util.Date(),
@@ -25,7 +25,7 @@ sealed interface Model<out T> : BackendObject, Builder<Any> {
             ) as Any
         }
 
-        class List<T : Any?>(
+        data class List<T : Any?>(
             val values: KList<T> = listOf()
         ) : Spinner<T> {
             override fun build() = GuiKT.backend.registry[Number::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
@@ -33,7 +33,7 @@ sealed interface Model<out T> : BackendObject, Builder<Any> {
             ) as Any
         }
 
-        class Number<T : KNumber>(
+        data class Number<T : KNumber>(
             val value: T = 0 as T,
             val min: Comparable<T> = 0 as Comparable<T>,
             val max: Comparable<T> = 0 as Comparable<T>,
@@ -46,7 +46,7 @@ sealed interface Model<out T> : BackendObject, Builder<Any> {
     }
 
     sealed interface List<T> : Model<T> {
-        class Default<T>(
+        data class Default<T>(
             val values: KList<T> = listOf()
         ) : List<T> {
             override fun build() = GuiKT.backend.registry[Default::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
@@ -56,7 +56,7 @@ sealed interface Model<out T> : BackendObject, Builder<Any> {
     }
 
     sealed interface ComboBox<T> : Model<T> {
-        class Default<T>(
+        data class Default<T>(
             val values: KList<T> = listOf()
         ) : ComboBox<T> {
             override fun build() = GuiKT.backend.registry[Default::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
@@ -66,7 +66,7 @@ sealed interface Model<out T> : BackendObject, Builder<Any> {
     }
 
     sealed interface BoundedRange<out T> : Model<T> {
-        class Integer(
+        data class Integer(
             val value: Int = 0,
             val extent: Int = 0,
             val min: Int = 0,

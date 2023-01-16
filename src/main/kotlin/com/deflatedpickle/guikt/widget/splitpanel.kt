@@ -1,22 +1,19 @@
 package com.deflatedpickle.guikt.widget
 
-import com.deflatedpickle.guikt.ComponentMap
 import com.deflatedpickle.guikt.GuiKT
 import com.deflatedpickle.guikt.api.Component
-import com.deflatedpickle.guikt.api.Container
 import com.deflatedpickle.guikt.api.GuiDSL
 import com.deflatedpickle.guikt.api.Orientation
 import com.deflatedpickle.guikt.impl.Constraint
 import com.deflatedpickle.guikt.impl.ContainerBuilder
-import com.deflatedpickle.guikt.impl.Layout
 
 
-fun <C : Constraint> ContainerBuilder<*>.splitpane(
+fun <C : Constraint> ContainerBuilder<*>.splitpanel(
     constraint: C,
-    block: SplitPaneBuilder<C>.() -> Unit = {}
-) = SplitPaneBuilder(constraint).apply(block).build().apply { this@splitpane.components[this] = constraint }
+    block: SplitPanelBuilder<C>.() -> Unit = {}
+) = SplitPanelBuilder(constraint).apply(block).build().apply { this@splitpanel.components[this] = constraint }
 
-interface SplitPane<C : Constraint> : Component<C> {
+interface SplitPanel<C : Constraint> : Component<C> {
     val constraint: C
 
     val left: Component<out Constraint>
@@ -27,16 +24,16 @@ interface SplitPane<C : Constraint> : Component<C> {
 }
 
 @GuiDSL
-class SplitPaneBuilder<C : Constraint>(
+class SplitPanelBuilder<C : Constraint>(
     var constraint: C,
-) : ContainerBuilder<SplitPane<C>>() {
+) : ContainerBuilder<SplitPanel<C>>() {
     var left: Component<out Constraint>? = null
     var right: Component<out Constraint>? = null
     var orientation = Orientation.HORIZONTAL
     var continuous = true
     var touchExpand = false
 
-    override fun build() = GuiKT.backend.registry[SplitPane::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
+    override fun build() = GuiKT.backend.registry[SplitPanel::class]?.constructors?.maxByOrNull { it.parameters.count() }!!.call(
         constraint, true, left, right, orientation, continuous, touchExpand,
-    ) as SplitPane<C>
+    ) as SplitPanel<C>
 }
